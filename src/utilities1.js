@@ -203,15 +203,15 @@ import CACHE from './cachedData';
              hash[e]=0;
          });
       }
-      function printCourts(minMatches,count,myHash){
-          count++;
+      function printCourts(minMatches,pc, myHash, myResHash){
           let h=courtsWithAssignments;
           const finalNumberOfMatchesPerPlayer ={};
           initializefinalNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer, numOfPlayers);
          let output =[];
+         let matchRes= {};
           COURTS_ASSIGNED.forEach((key) => {
-              //let matches = count === 1 ? h[key] : shuffle(h[key]);
                let matches = h[key];
+               matchRes[key]=[];
               //console.log('Matches', numOfPlayers, matches.length, matches)
               output.push(`Court ${key} :`);
               //console.log(`Court ${key} :`)
@@ -224,6 +224,8 @@ import CACHE from './cachedData';
                       assignTomatchesForEachPlayer(p, matchesForEachPlayer, matches[m])
                   });
                   //console.log(`Game ${m+1} Players ${player1} and ${player2} vs ${player3} and ${player4}`)
+                  
+                  matchRes[key].push(matches[m].flat());
                   output.push(`Game ${m+1} Players ${player1} and ${player2} vs ${player3} and ${player4}`)
               }
               })
@@ -232,22 +234,23 @@ import CACHE from './cachedData';
               const sumOfDifferencesWithMinMatches =closestToN(Object.values(finalNumberOfMatchesPerPlayer), minMatches);
               // console.log('sumOfDifferencesWithMinMatches',sumOfDifferencesWithMinMatches);
               //output.push(finalNumberOfMatchesPerPlayer)
-              myHash[sumOfDifferencesWithMinMatches]={output, finalNumberOfMatchesPerPlayer};
-  
+              myHash[sumOfDifferencesWithMinMatches]={output, finalNumberOfMatchesPerPlayer, matchRes};
+             // myResHash[sumOfDifferencesWithMinMatches]=matchRes;
             // console.log('END OF PROGRAM')
       }
       
-      printCourts(minMatches, pc, myHash);
+      printCourts(minMatches,pc, myHash, myResHash);
      // printMatchesForPlayer('1');
   }
   
   
   
   
-  let myHash={}
+  let myHash={};
+  let myResHash={};
   const matchGenerator = async ({ numOfPlayers, minMatches, noOfCourts }) => {
     let pc=0;
-    while(pc<500){
+    while(pc<1000){
       pc++;
       validateNumOfPlayersAndGenMatches(numOfPlayers-1, numOfPlayers);
       assignCourtsToMatches(result,numOfPlayers, minMatches, noOfCourts,  pc, myHash);

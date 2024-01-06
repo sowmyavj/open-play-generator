@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MatchAssignmentUI from './MatchAssignmentsUi'; // Adjust the import path
+import ExcelReader from './ExcelReader';
 
 import './PickleballOpenPlayGen.css'; // Import the CSS file
 import matchGenerator from './utilities1';
@@ -11,6 +12,7 @@ const PickleballOpenPlayGen = () => {
   const [numCourts, setNumCourts] = useState('');
   const [result, setResult] = useState([]);
   const [numberOfMatchesPerPlayer, setNumberOfMatchesPerPlayer]= useState(null);
+  const [playerNames, setPlayerNames] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,6 @@ const PickleballOpenPlayGen = () => {
       alert('Please enter valid values.\nNumber of players must be greater than or equal to 4. \nMinimum Number of Matches must be less than the no of players ');
       return;
     }
-
     // Perform any logic or API calls with the entered values here
     console.log('Number of Players:', numPlayers);
     console.log('Minimum Number of Matches per Player:', minMatches);
@@ -45,11 +46,16 @@ const PickleballOpenPlayGen = () => {
     
   };
 
-  
+  const onUpload = (t) => {
+    console.log(t);
+    setPlayerNames(t);
+    setNumPlayers(t.length);
+  }
 
   return (
     <div className="pickleball-container">
       <h1>Open Play Games Generator</h1>
+      <ExcelReader onUpload={onUpload}/>
       <form onSubmit={handleSubmit}>
         <label>
         <p>Number of Players:</p>
@@ -89,7 +95,7 @@ const PickleballOpenPlayGen = () => {
           <div>{result.map((r,idx) => 
             <pre key={idx}>{r}</pre>
           )}</div>
-          <MatchAssignmentUI matchAssignments={numberOfMatchesPerPlayer} />
+          <MatchAssignmentUI matchAssignments={numberOfMatchesPerPlayer} playerNames={playerNames}/>
         </div>
       )}
     </div>

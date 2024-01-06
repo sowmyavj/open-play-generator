@@ -1,7 +1,7 @@
 import React from 'react';
 import './MatchAssignmentsUi.css'; // Import the CSS file
 
-const MatchAssignmentUI = ({ matchAssignments }) => {
+const MatchAssignmentUI = ({ matchAssignments, playerNames }) => {
   return (
     <div>
       <h2>Match Assignments</h2>
@@ -15,7 +15,7 @@ const MatchAssignmentUI = ({ matchAssignments }) => {
         <tbody>
           {Object.entries(matchAssignments).map(([player, matches]) => (
             <tr key={player}>
-              <td><pre>Player {player}</pre></td>
+              <td><pre>{player} {playerNames[player-1]}</pre></td>
               <td><pre>{matches}</pre></td>
             </tr>
           ))}
