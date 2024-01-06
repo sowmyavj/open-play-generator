@@ -231,9 +231,8 @@ import CACHE from './cachedData';
               //console.log('Matches per player', JSON.stringify(matchesForEachPlayer))
               const sumOfDifferencesWithMinMatches =closestToN(Object.values(finalNumberOfMatchesPerPlayer), minMatches);
               // console.log('sumOfDifferencesWithMinMatches',sumOfDifferencesWithMinMatches);
-              output.push(finalNumberOfMatchesPerPlayer)
-  
-              myHash[sumOfDifferencesWithMinMatches]=output;
+              //output.push(finalNumberOfMatchesPerPlayer)
+              myHash[sumOfDifferencesWithMinMatches]={output, finalNumberOfMatchesPerPlayer};
   
             // console.log('END OF PROGRAM')
       }
@@ -245,18 +244,10 @@ import CACHE from './cachedData';
   
   
   
-  const numOfPlayers = 19;
-  const minMatches = 4;
-  const noOfCourts = 7;
-  const isMultipleofFour = numOfPlayers % 4 === 0;
   let myHash={}
-  
-  
-  
-
   const matchGenerator = async ({ numOfPlayers, minMatches, noOfCourts }) => {
     let pc=0;
-    while(pc<50){
+    while(pc<500){
       pc++;
       validateNumOfPlayersAndGenMatches(numOfPlayers-1, numOfPlayers);
       assignCourtsToMatches(result,numOfPlayers, minMatches, noOfCourts,  pc, myHash);

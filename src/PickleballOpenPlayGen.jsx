@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import MatchAssignmentUI from './MatchAssignmentsUi'; // Adjust the import path
+
 import './PickleballOpenPlayGen.css'; // Import the CSS file
 import matchGenerator from './utilities1';
+import RESULT_CACHE from './resultsCaches';
 
 const PickleballOpenPlayGen = () => {
   const [numPlayers, setNumPlayers] = useState('');
@@ -29,13 +32,17 @@ const PickleballOpenPlayGen = () => {
     console.log('Number of Players:', numPlayers);
     console.log('Minimum Number of Matches per Player:', minMatches);
     console.log('Number of Courts:', numCourts);
-    matchGenerator({ numOfPlayers: numPlayers, minMatches , noOfCourts: numCourts}).then((result) => {
-      if(result.length) {
-        const numberOfMatchesPerPlayer = result.pop();
-        setNumberOfMatchesPerPlayer(numberOfMatchesPerPlayer);
-      }
-      setResult(result)
+    if(RESULT_CACHE[numPlayers+'-'+minMatches+'-'+numCourts]){
+      const {finalNumberOfMatchesPerPlayer, output }= RESULT_CACHE[numPlayers+'-'+minMatches+'-'+numCourts];
+      setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
+      setResult(output)
+    }else {
+      matchGenerator({ numOfPlayers: numPlayers, minMatches , noOfCourts: numCourts}).then(({output, finalNumberOfMatchesPerPlayer}) => {
+        setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
+      setResult(output)
     });
+    }
+    
   };
 
   
@@ -79,9 +86,10 @@ const PickleballOpenPlayGen = () => {
       {!!result.length && (
         <div className="schedule-container">
           <h2>Schedule:</h2>
-          <div>{result.map((r) => 
-            <pre>{r}</pre>
+          <div>{result.map((r,idx) => 
+            <pre key={idx}>{r}</pre>
           )}</div>
+          <MatchAssignmentUI matchAssignments={numberOfMatchesPerPlayer} />
         </div>
       )}
     </div>
