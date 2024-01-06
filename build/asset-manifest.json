@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/open-play-generator/static/css/main.16ddfe09.css",
-    "main.js": "/open-play-generator/static/js/main.b4ace1c4.js",
-    "static/js/787.79c3880e.chunk.js": "/open-play-generator/static/js/787.79c3880e.chunk.js",
-    "index.html": "/open-play-generator/index.html",
-    "main.16ddfe09.css.map": "/open-play-generator/static/css/main.16ddfe09.css.map",
-    "main.b4ace1c4.js.map": "/open-play-generator/static/js/main.b4ace1c4.js.map",
-    "787.79c3880e.chunk.js.map": "/open-play-generator/static/js/787.79c3880e.chunk.js.map"
+    "main.css": "/open-play-generator/build/static/css/main.16ddfe09.css",
+    "main.js": "/open-play-generator/build/static/js/main.5d893d44.js",
+    "static/js/787.79c3880e.chunk.js": "/open-play-generator/build/static/js/787.79c3880e.chunk.js",
+    "index.html": "/open-play-generator/build/index.html",
+    "main.16ddfe09.css.map": "/open-play-generator/build/static/css/main.16ddfe09.css.map",
+    "main.5d893d44.js.map": "/open-play-generator/build/static/js/main.5d893d44.js.map",
+    "787.79c3880e.chunk.js.map": "/open-play-generator/build/static/js/787.79c3880e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.16ddfe09.css",
-    "static/js/main.b4ace1c4.js"
+    "static/js/main.5d893d44.js"
   ]
 }
