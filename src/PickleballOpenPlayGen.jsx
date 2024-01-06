@@ -8,6 +8,7 @@ const PickleballOpenPlayGen = () => {
   const [numCourts, setNumCourts] = useState('');
   const [result, setResult] = useState([]);
   const [numberOfMatchesPerPlayer, setNumberOfMatchesPerPlayer]= useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
