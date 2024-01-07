@@ -16,10 +16,10 @@ const PickleballOpenPlayGen = () => {
 
 
   const generatePlayerNamesinOutput =(op) => {
-    const numberRegex = /(?:Players )(\d+)(?: and )(\d+)/g;
+    const numberRegex = /(?:Players )(\d+)(?: and )(\d+) vs (\d+) and (\d+)/g;
     return op.map((o) => {
-      const updatedMatchString = o.replace(numberRegex, (_, player1, player2) => {
-             return `Players ${playerNames[player1-1] || player1} and ${playerNames[player2-1] || player2}`;
+      const updatedMatchString = o.replace(numberRegex, (_, player1, player2, player3, player4) => {
+             return `Players ${playerNames[player1-1] || player1} and ${playerNames[player2-1] || player2} vs ${playerNames[player3-1] ||player3} and ${playerNames[player4-1] ||player4}`;
           });
       return updatedMatchString;
     });
