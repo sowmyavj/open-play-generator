@@ -216,7 +216,7 @@ import CACHE from './cachedData';
               output.push(`Court ${key} :`);
               //console.log(`Court ${key} :`)
              // console.log('KEY',key, JSON.stringify(h))
-              for(let m=0;m<minMatches+1;m++) {
+              for(let m=0;m<minMatches;m++) {
                  // console.log('matches', m, matches[m])
                   const [player1, player2,player3,player4]= matches[m].flat();
                   [player1, player2,player3,player4].forEach((p)=> {
