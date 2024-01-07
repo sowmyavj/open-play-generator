@@ -216,7 +216,7 @@ import CACHE from './cachedData';
               output.push(`Court ${key} :`);
               //console.log(`Court ${key} :`)
              // console.log('KEY',key, JSON.stringify(h))
-              for(let m=0;m<minMatches;m++) {
+              for(let m=0;m<minMatches+1;m++) {
                  // console.log('matches', m, matches[m])
                   const [player1, player2,player3,player4]= matches[m].flat();
                   [player1, player2,player3,player4].forEach((p)=> {
@@ -250,7 +250,7 @@ import CACHE from './cachedData';
   let myResHash={};
   const matchGenerator = async ({ numOfPlayers, minMatches, noOfCourts }) => {
     let pc=0;
-    while(pc<1000){
+    while(pc<500){
       pc++;
       validateNumOfPlayersAndGenMatches(numOfPlayers-1, numOfPlayers);
       assignCourtsToMatches(result,numOfPlayers, minMatches, noOfCourts,  pc, myHash);
