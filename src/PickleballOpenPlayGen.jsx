@@ -14,6 +14,16 @@ const PickleballOpenPlayGen = () => {
   const [numberOfMatchesPerPlayer, setNumberOfMatchesPerPlayer]= useState(null);
   const [playerNames, setPlayerNames] = useState([]);
 
+
+  const generatePlayerNamesinOutput =(op) => {
+    const numberRegex = /(?:Players )(\d+)(?: and )(\d+)/g;
+    return op.map((o) => {
+      const updatedMatchString = o.replace(numberRegex, (_, player1, player2) => {
+             return `Players ${playerNames[player1-1] || player1} and ${playerNames[player2-1] || player2}`;
+          });
+      return updatedMatchString;
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,7 +46,9 @@ const PickleballOpenPlayGen = () => {
     if(RESULT_CACHE[numPlayers+'-'+minMatches+'-'+numCourts]){
       const {finalNumberOfMatchesPerPlayer, output }= RESULT_CACHE[numPlayers+'-'+minMatches+'-'+numCourts];
       setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
-      setResult(output)
+      
+      let res=generatePlayerNamesinOutput(output);
+      setResult(res)
     }else {
       matchGenerator({ numOfPlayers: numPlayers, minMatches , noOfCourts: numCourts}).then(({output, finalNumberOfMatchesPerPlayer}) => {
         setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
