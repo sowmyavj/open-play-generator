@@ -52,7 +52,8 @@ const PickleballOpenPlayGen = () => {
     }else {
       matchGenerator({ numOfPlayers: numPlayers, minMatches , noOfCourts: numCourts}).then(({output, finalNumberOfMatchesPerPlayer}) => {
         setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
-      setResult(output)
+      let res=generatePlayerNamesinOutput(output);
+      setResult(res)
     });
     }
     
