@@ -25,14 +25,14 @@ const RESULT_CACHE = {
     'Game 6 Players 1 and 16 vs 10 and 18',
     'Game 7 Players 3 and 6 vs 14 and 16',
     'Court 4 :',
-    'Game 1 Players 2 and 7 vs 3 and 16',
+    'Game 1 Players 2 and 7 vs 9 and 15',
     'Game 2 Players 1 and 12 vs 6 and 19',
     'Game 3 Players 11 and 15 vs 12 and 17',
     'Game 4 Players 1 and 11 vs 7 and 16',
     'Game 5 Players 3 and 13 vs 7 and 17',
     'Game 6 Players 4 and 17 vs 6 and 9',
     'Game 7 Players 1 and 9 vs 5 and 17',
-    'Game 8 Players 9 and 15 vs 2 and 19'
+    'Game 8 Players 3 and 16 vs 2 and 19'
   ],
    finalNumberOfMatchesPerPlayer: {
     '1': 6,

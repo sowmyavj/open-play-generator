@@ -71,7 +71,7 @@ const PickleballOpenPlayGen = () => {
       <ExcelReader onUpload={onUpload}/>
       <form onSubmit={handleSubmit}>
         <label>
-        <p>Number of Players:</p>
+        <p className="input-label">Number of Players:</p>
           <input
             type="number"
             value={numPlayers}
@@ -81,7 +81,7 @@ const PickleballOpenPlayGen = () => {
         </label>
         <br />
         <label>
-          <p>Minimum Number of Matches per Player:</p>
+          <p className="input-label">Minimum Number of Matches per Player:</p>
           <input
             type="number"
             value={minMatches}
@@ -91,7 +91,7 @@ const PickleballOpenPlayGen = () => {
         </label>
         <br />
         <label>
-        <p>Number of Courts:</p>
+        <p className="input-label">Number of Courts:</p>
           <input
             type="number"
             value={numCourts}

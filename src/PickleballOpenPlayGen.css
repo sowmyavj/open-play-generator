@@ -1,9 +1,9 @@
 /* PickleballOpenPlayGen.css */
 
 .pickleball-container {
-    padding: 30px;
+    padding: 60px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 22px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
     text-align: center;
@@ -14,7 +14,7 @@
   }
   
   h1 {
-    color: #333;
+    color: grey;
   }
   
   form {
@@ -29,7 +29,9 @@
     margin-bottom: 8px;
     font-size: 16px;
     font-weight: bold;
-    color: #555;
+    color: grey;
+    justify-content: space-around;
+    flex-direction: column;
   }
   
   input {
@@ -63,3 +65,7 @@
     margin-top: 20px;
     text-align: left;
   }
+
+.input-label {
+
+}
