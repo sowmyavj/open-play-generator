@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/open-play-generator/build/static/css/main.569ecf98.css",
-    "main.js": "/open-play-generator/build/static/js/main.e4ec734b.js",
+    "main.js": "/open-play-generator/build/static/js/main.f79fe6dc.js",
     "static/js/787.79c3880e.chunk.js": "/open-play-generator/build/static/js/787.79c3880e.chunk.js",
     "index.html": "/open-play-generator/build/index.html",
     "main.569ecf98.css.map": "/open-play-generator/build/static/css/main.569ecf98.css.map",
-    "main.e4ec734b.js.map": "/open-play-generator/build/static/js/main.e4ec734b.js.map",
+    "main.f79fe6dc.js.map": "/open-play-generator/build/static/js/main.f79fe6dc.js.map",
     "787.79c3880e.chunk.js.map": "/open-play-generator/build/static/js/787.79c3880e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.569ecf98.css",
-    "static/js/main.e4ec734b.js"
+    "static/js/main.f79fe6dc.js"
   ]
 }
