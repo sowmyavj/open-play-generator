@@ -4,6 +4,7 @@
   justify-items: center;
   align-items: center;
   justify-content: center;
+  background-image: url("./pickleball_image.jpg");
 }
 
 .App-logo {

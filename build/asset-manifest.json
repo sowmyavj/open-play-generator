@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/open-play-generator/build/static/css/main.569ecf98.css",
+    "main.css": "/open-play-generator/build/static/css/main.d487668e.css",
     "main.js": "/open-play-generator/build/static/js/main.f79fe6dc.js",
     "static/js/787.79c3880e.chunk.js": "/open-play-generator/build/static/js/787.79c3880e.chunk.js",
+    "static/media/pickleball_image.jpg": "/open-play-generator/build/static/media/pickleball_image.f647fb49c6da052ce6ab.jpg",
     "index.html": "/open-play-generator/build/index.html",
-    "main.569ecf98.css.map": "/open-play-generator/build/static/css/main.569ecf98.css.map",
+    "main.d487668e.css.map": "/open-play-generator/build/static/css/main.d487668e.css.map",
     "main.f79fe6dc.js.map": "/open-play-generator/build/static/js/main.f79fe6dc.js.map",
     "787.79c3880e.chunk.js.map": "/open-play-generator/build/static/js/787.79c3880e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.569ecf98.css",
+    "static/css/main.d487668e.css",
     "static/js/main.f79fe6dc.js"
   ]
 }
