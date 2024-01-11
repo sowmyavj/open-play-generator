@@ -67,6 +67,10 @@
     margin-top: 20px;
   }
 
-.input-label {
+.optimizeResultCheck {
+  margin: 20px;
+}
 
+input {
+  height: 26px;
 }

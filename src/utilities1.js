@@ -268,7 +268,6 @@ function assignCourtsToMatches(
           }
         });
       }
-
       playerCourtAssignments = {};
     }
     const temp = COURTS_ASSIGNED.filter((m) => courts.indexOf(m) < 0);
@@ -327,7 +326,7 @@ const findLinesContainingPlayers = (playerNumber, data) => {
   return data.filter((line) => playersRegex.test(line));
 };
 
-function printCourts(courtsWithAssignments, numOfPlayers, noOfCourts) {
+function printCourts(courtsWithAssignments, numOfPlayers, noOfCourts, rounds) {
   let h = courtsWithAssignments;
   let output = [];
   let matchRes = {};
@@ -350,6 +349,14 @@ function printCourts(courtsWithAssignments, numOfPlayers, noOfCourts) {
           m + 1
         } Players ${player1} and ${player2} vs ${player3} and ${player4}`
       );
+      if(m+1 in rounds){
+        rounds[m+1].add(player1)
+        rounds[m+1].add(player2)
+        rounds[m+1].add(player3)
+        rounds[m+1].add(player4)
+       }else {
+        rounds[m+1]= new Set([player1, player2, player3, player4]);
+    }
     }
   });
   console.log(output);
@@ -358,9 +365,10 @@ function printCourts(courtsWithAssignments, numOfPlayers, noOfCourts) {
 let myHash = {};
 let myResHash = {};
 let playerCount = {};
+
 function matchGenerator({ numOfPlayers, minMatches, noOfCourts }) {
   let pc = 0;
-  while (pc < 1) {
+  while (pc < 100) {
     pc++;
     validateNumOfPlayersAndGenMatches(numOfPlayers - 1, numOfPlayers);
     assignCourtsToMatches(
@@ -374,10 +382,15 @@ function matchGenerator({ numOfPlayers, minMatches, noOfCourts }) {
   }
   const minimumDiff = Math.min(...Object.keys(myResHash));
   let res = myResHash[minimumDiff];
-  let output = printCourts(res.courtsWithAssignments, numOfPlayers, noOfCourts);
+  let rounds={};
+  let output = printCourts(res.courtsWithAssignments, numOfPlayers, noOfCourts, rounds);
+  Object.keys(rounds).map((k) => {
+    rounds[k]=[...rounds[k]];
+  })
   return {
     output,
     finalNumberOfMatchesPerPlayer: res.playerCount,
+    rounds
   };
 }
 

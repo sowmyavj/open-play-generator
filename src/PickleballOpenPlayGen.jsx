@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MatchAssignmentUI from "./MatchAssignmentsUi"; // Adjust the import path
 import ExcelReader from "./ExcelReader";
-
+import  Rounds from "./Rounds";
 import "./PickleballOpenPlayGen.css"; // Import the CSS file
 import matchGenerator from "./utilities1";
 import RESULT_CACHE from "./resultsCaches";
@@ -11,9 +11,15 @@ const PickleballOpenPlayGen = () => {
   const [minMatches, setMinMatches] = useState("");
   const [numCourts, setNumCourts] = useState("");
   const [result, setResult] = useState([]);
+  const [rounds, setRounds] = useState([]);
   const [numberOfMatchesPerPlayer, setNumberOfMatchesPerPlayer] =
     useState(null);
   const [playerNames, setPlayerNames] = useState([]);
+  const [isChecked, setChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setChecked(!isChecked);
+  };
 
   const generatePlayerNamesinOutput = (op) => {
     const numberRegex = /(?:Players )(\d+)(?: and )(\d+) vs (\d+) and (\d+)/g;
@@ -52,15 +58,16 @@ const PickleballOpenPlayGen = () => {
     console.log("Number of Players:", numPlayers);
     console.log("Minimum Number of Matches per Player:", minMatches);
     console.log("Number of Courts:", numCourts);
-    if (RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts]) {
-      const { finalNumberOfMatchesPerPlayer, output } =
+    if (isChecked && RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts]) {
+      const { finalNumberOfMatchesPerPlayer, output, rounds } =
         RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts];
       setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
 
       let res = generatePlayerNamesinOutput(output);
       setResult(res);
+      setRounds(rounds);
     } else {
-      const { output, finalNumberOfMatchesPerPlayer } = matchGenerator({
+      const { output, finalNumberOfMatchesPerPlayer, rounds } = matchGenerator({
         numOfPlayers: numPlayers,
         minMatches,
         noOfCourts: numCourts,
@@ -68,6 +75,7 @@ const PickleballOpenPlayGen = () => {
       setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
       let res = generatePlayerNamesinOutput(output);
       setResult(res);
+      setRounds(rounds);
     }
   };
 
@@ -113,6 +121,13 @@ const PickleballOpenPlayGen = () => {
         </label>
         <br />
         <button type="submit">Generate Schedule</button>
+        
+        <label htmlFor="checkbox" className="optimizeResultCheck">Check this box if you would like to see optimized result for your input combination</label>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
       </form>
       {!!result.length && (
         <div className="schedule-container">
@@ -122,6 +137,7 @@ const PickleballOpenPlayGen = () => {
               <pre key={idx}>{r}</pre>
             ))}
           </div>
+          <Rounds rounds={rounds} numPlayers={numPlayers}/>
           <MatchAssignmentUI
             matchAssignments={numberOfMatchesPerPlayer}
             playerNames={playerNames}
