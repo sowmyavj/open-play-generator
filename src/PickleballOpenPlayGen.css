@@ -62,8 +62,9 @@
   }
 
 .schedule-container {
+  display: flex;
+  flex-direction: column;
     margin-top: 20px;
-    text-align: left;
   }
 
 .input-label {
