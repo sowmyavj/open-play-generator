@@ -156,7 +156,9 @@ function assignCourtsToMatches(
   minMatches,
   noOfCourts,
   pc,
-  myHash
+  myHash,
+  playerCount,
+  myResHash
 ) {
   console.log("matches", matches.length);
   let doublesMatches = matches;
@@ -362,11 +364,12 @@ function printCourts(courtsWithAssignments, numOfPlayers, noOfCourts, rounds) {
   console.log(output);
   return output;
 }
-let myHash = {};
-let myResHash = {};
-let playerCount = {};
 
-function matchGenerator({ numOfPlayers, minMatches, noOfCourts }) {
+
+function matchGenerator ({ numOfPlayers, minMatches, noOfCourts }) {
+  let myHash = {};
+  let myResHash = {};
+  let playerCount = {};
   let pc = 0;
   while (pc < 100) {
     pc++;
@@ -377,7 +380,9 @@ function matchGenerator({ numOfPlayers, minMatches, noOfCourts }) {
       minMatches,
       noOfCourts,
       pc,
-      myHash
+      myHash,
+      playerCount,
+      myResHash
     );
   }
   const minimumDiff = Math.min(...Object.keys(myResHash));
@@ -387,11 +392,14 @@ function matchGenerator({ numOfPlayers, minMatches, noOfCourts }) {
   Object.keys(rounds).map((k) => {
     rounds[k]=[...rounds[k]];
   })
-  return {
-    output,
-    finalNumberOfMatchesPerPlayer: res.playerCount,
-    rounds
-  };
+  return new Promise((resolve, reject) => {
+    resolve({
+      output,
+      finalNumberOfMatchesPerPlayer: res.playerCount,
+      rounds
+    });
+  })
+
 }
 
 export default matchGenerator;

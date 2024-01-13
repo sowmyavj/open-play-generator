@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MatchAssignmentUI from "./MatchAssignmentsUi"; // Adjust the import path
 import ExcelReader from "./ExcelReader";
 import  Rounds from "./Rounds";
@@ -16,6 +16,32 @@ const PickleballOpenPlayGen = () => {
     useState(null);
   const [playerNames, setPlayerNames] = useState([]);
   const [isChecked, setChecked] = useState(false);
+  const [isSubmitting, setIsSubmit] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+       getScheduleData().then(({output, finalNumberOfMatchesPerPlayer, rounds}) => {
+        setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
+        let res = generatePlayerNamesinOutput(output);
+        setResult(res);
+        setRounds(rounds);
+        setIsSubmit(false)
+       });
+      
+    }
+  }, [isSubmitting]);
+
+  const getScheduleData = async () => {
+    if (isChecked && RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts]) {
+      return RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts];
+    } else {
+      return matchGenerator({
+        numOfPlayers: numPlayers,
+        minMatches,
+        noOfCourts: numCourts,
+      });
+    }
+  };
 
   const handleCheckboxChange = () => {
     setChecked(!isChecked);
@@ -37,9 +63,10 @@ const PickleballOpenPlayGen = () => {
       return updatedMatchString;
     });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   // setResult([]);
     // Validate input
     if (
       isNaN(numPlayers) ||
@@ -54,29 +81,12 @@ const PickleballOpenPlayGen = () => {
       );
       return;
     }
+    setIsSubmit(true);
+
     // Perform any logic or API calls with the entered values here
     console.log("Number of Players:", numPlayers);
     console.log("Minimum Number of Matches per Player:", minMatches);
     console.log("Number of Courts:", numCourts);
-    if (isChecked && RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts]) {
-      const { finalNumberOfMatchesPerPlayer, output, rounds } =
-        RESULT_CACHE[numPlayers + "-" + minMatches + "-" + numCourts];
-      setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
-
-      let res = generatePlayerNamesinOutput(output);
-      setResult(res);
-      setRounds(rounds);
-    } else {
-      const { output, finalNumberOfMatchesPerPlayer, rounds } = matchGenerator({
-        numOfPlayers: numPlayers,
-        minMatches,
-        noOfCourts: numCourts,
-      });
-      setNumberOfMatchesPerPlayer(finalNumberOfMatchesPerPlayer);
-      let res = generatePlayerNamesinOutput(output);
-      setResult(res);
-      setRounds(rounds);
-    }
   };
 
   const onUpload = (t) => {
@@ -120,7 +130,7 @@ const PickleballOpenPlayGen = () => {
           />
         </label>
         <br />
-        <button type="submit">Generate Schedule</button>
+        <button type="submit"  className={isSubmitting ? 'loading' : ''} disabled={isSubmitting}>Generate Schedule</button>
         
         <label htmlFor="checkbox" className="optimizeResultCheck">Check this box if you would like to see optimized result for your input combination</label>
         <input
@@ -129,7 +139,10 @@ const PickleballOpenPlayGen = () => {
           onChange={handleCheckboxChange}
         />
       </form>
-      {!!result.length && (
+      {isSubmitting &&
+        <div>Loading... </div>
+      }
+      {!!result.length && !isSubmitting && (
         <div className="schedule-container">
           <h2>Schedule:</h2>
           <div>
