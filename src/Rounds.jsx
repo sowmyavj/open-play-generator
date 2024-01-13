@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rounds = ({ rounds, numPlayers }) => {
+const Rounds = ({ rounds, numPlayers, playerNames }) => {
   const byesPerRound = {};
   let elements = Array.from({ length: numPlayers }, (x, i) => i + 1);
   let elementsSet = new Set(elements);
@@ -34,7 +34,7 @@ const Rounds = ({ rounds, numPlayers }) => {
                 <pre>Game {round}</pre>
               </td>
               <td>
-                <pre>{byesPerRound[round].join(',')}</pre>
+                <pre>{byesPerRound[round].map((bye) => playerNames[bye]||bye).join(',')}</pre>
               </td>
             </tr>
           ))}

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/open-play-generator/build/static/css/main.8e4a233c.css",
-    "main.js": "/open-play-generator/build/static/js/main.f692619a.js",
+    "main.css": "/open-play-generator/build/static/css/main.b379152e.css",
+    "main.js": "/open-play-generator/build/static/js/main.060c4ce6.js",
     "static/js/787.79c3880e.chunk.js": "/open-play-generator/build/static/js/787.79c3880e.chunk.js",
     "static/media/pickleball_image.jpg": "/open-play-generator/build/static/media/pickleball_image.f647fb49c6da052ce6ab.jpg",
     "index.html": "/open-play-generator/build/index.html",
-    "main.8e4a233c.css.map": "/open-play-generator/build/static/css/main.8e4a233c.css.map",
-    "main.f692619a.js.map": "/open-play-generator/build/static/js/main.f692619a.js.map",
+    "main.b379152e.css.map": "/open-play-generator/build/static/css/main.b379152e.css.map",
+    "main.060c4ce6.js.map": "/open-play-generator/build/static/js/main.060c4ce6.js.map",
     "787.79c3880e.chunk.js.map": "/open-play-generator/build/static/js/787.79c3880e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e4a233c.css",
-    "static/js/main.f692619a.js"
+    "static/css/main.b379152e.css",
+    "static/js/main.060c4ce6.js"
   ]
 }

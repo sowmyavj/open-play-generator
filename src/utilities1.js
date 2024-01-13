@@ -371,7 +371,7 @@ function matchGenerator ({ numOfPlayers, minMatches, noOfCourts }) {
   let myResHash = {};
   let playerCount = {};
   let pc = 0;
-  while (pc < 100) {
+  while (pc < 20) {
     pc++;
     validateNumOfPlayersAndGenMatches(numOfPlayers - 1, numOfPlayers);
     assignCourtsToMatches(

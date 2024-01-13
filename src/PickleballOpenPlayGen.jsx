@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MatchAssignmentUI from "./MatchAssignmentsUi"; // Adjust the import path
 import ExcelReader from "./ExcelReader";
 import  Rounds from "./Rounds";
+import Schedule from './Schedule';
 import "./PickleballOpenPlayGen.css"; // Import the CSS file
 import matchGenerator from "./utilities1";
 import RESULT_CACHE from "./resultsCaches";
@@ -142,21 +143,8 @@ const PickleballOpenPlayGen = () => {
       {isSubmitting &&
         <div>Loading... </div>
       }
-      {!!result.length && !isSubmitting && (
-        <div className="schedule-container">
-          <h2>Schedule:</h2>
-          <div>
-            {result.map((r, idx) => (
-              <pre key={idx}>{r}</pre>
-            ))}
-          </div>
-          <Rounds rounds={rounds} numPlayers={numPlayers}/>
-          <MatchAssignmentUI
-            matchAssignments={numberOfMatchesPerPlayer}
-            playerNames={playerNames}
-          />
-        </div>
-      )}
+      {!!result.length && !isSubmitting && <Schedule result={result} rounds={rounds} numPlayers={numPlayers} numberOfMatchesPerPlayer={numberOfMatchesPerPlayer} playerNames={playerNames}/>
+      }
     </div>
   );
 };

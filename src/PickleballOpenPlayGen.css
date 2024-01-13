@@ -99,3 +99,28 @@ button.loading::after {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Example CSS Styles */
+.schedule-container table {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.schedule-container td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.schedule-container table {
+  border-color: gray;
+}
+
+.schedule-container tr:hover {
+  background-color: #f5f5f5;
+}
+
+.schedule-container tr {
+  text-align: left;
+  border: 1px solid #ddd;
+}
